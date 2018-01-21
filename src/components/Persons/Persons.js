@@ -38,11 +38,12 @@ class Persons extends Component {
         return (
             this.props.persons.map((person, index) => {
                 return <Person  
-                          name={person.name} 
-                          age={person.age} 
-                          click={() => this.props.clicked(index)}
-                          changed={(event) => this.props.changed(event, person.id)} 
-                          key={person.id} />
+                    position={index}
+                    name={person.name} 
+                    age={person.age} 
+                    click={() => this.props.clicked(index)}
+                    changed={(event) => this.props.changed(event, person.id)} 
+                    key={person.id} />
               })
         )
     }

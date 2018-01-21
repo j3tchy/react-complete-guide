@@ -14,32 +14,10 @@ class App extends Component {
         { id: 2, name: 'Jerms', age: 28},
         { id: 3, name: 'Jay', age: 21}
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClickCounter: 0
     }
   }
-
-  componentWillMount() {
-    console.log('[App.js] Inside componentWillMount()' );
-  }
-
-  componentDidMount() {
-    console.log('[App.js] Inside componentDidMount()');
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Upate App.js] Inside shouldComponentUpdate', nextProps, nextState);
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-      console.log('[Update App.js] Inside componentWillUpdate', nextProps, nextState);
-  }
-
-  componentDidUpdate() {
-    console.log('[Update App.js] Inside componentDidUpdate');  
-  }
-
-
 
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
@@ -71,8 +49,11 @@ class App extends Component {
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ 
-      showPersons: !doesShow
+    this.setState( (prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClickCounter: prevState.toggleClickCounter + 1  
+      } 
     });
   }
 
